@@ -4,7 +4,7 @@ GoPhish's default credentials are: **admin/gophish**
 
 <img width="1512" alt="Screenshot 2024-12-27 at 6 57 24 AM" src="https://github.com/user-attachments/assets/ad8a298d-6b0f-4ec9-9609-962d56d46a82" />
 
-# How to use
+# Step-by-Step Instructions
 1) git clone https://github.com/BestDevOfc/GoPhish-Sprayers.git
 2) cd GoPhish-Sprayers/
 3) python3 -m pip install -r requirements.txt --break-system-packages
