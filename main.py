@@ -97,11 +97,13 @@ class Sprayer(object):
                     open(f"{time.time()}-unknown.html", 'w').write(f"HERE: {url}\n\n{req.text}")
                     
                 self.pbar.update()
-                break
+                return
             except Exception as err:
                 # print(f"{Fore.RED}{err}")
                 logging.error(f"({url}) ==> {err}")
                 pass
+        # login failed because connection could not be made.
+        self.pbar.update()
 
 
     def main(self):
