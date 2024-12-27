@@ -13,14 +13,22 @@ from tqdm import tqdm
 
 
 # some initialization shenanigans
-# Configure logging
-logging.basicConfig(
-    filename='sprayer.log',
-    level=logging.DEBUG,
-    format='%(asctime)s [%(levelname)s] %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S'
-)
-logging.basicConfig(level=logging.ERROR)
+# Create a logger
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)  # Set the logging level
+
+# Create a file handler and set its level
+file_handler = logging.FileHandler('app.log')  # Logs will be written to 'app.log'
+file_handler.setLevel(logging.DEBUG)
+
+# Create a formatter and associate it with the handler
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+file_handler.setFormatter(formatter)
+
+# Add the file handler to the logger
+logger.addHandler(file_handler)
+
+
 # Suppress the InsecureRequestWarning
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -100,7 +108,7 @@ class Sprayer(object):
                 return
             except Exception as err:
                 # print(f"{Fore.RED}{err}")
-                logging.error(f"({url}) ==> {err}")
+                logger.error(f"({url}) ==> {err}")
                 pass
         # login failed because connection could not be made.
         self.pbar.update()
